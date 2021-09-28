@@ -52,7 +52,7 @@ class PageAdminController extends Controller
         ]));
     }
 
-    public function listAction(?Request $request = null)
+    public function listAction(?Request $request = null):Response
     {
         if (!$request->get('filter')) {
             return new RedirectResponse($this->admin->generateUrl('tree'));
@@ -105,7 +105,7 @@ class PageAdminController extends Controller
         ]);
     }
 
-    public function createAction(?Request $request = null)
+    public function createAction(?Request $request = null):Response
     {
         $this->admin->checkAccess('create');
 
@@ -252,15 +252,5 @@ class PageAdminController extends Controller
             'container' => $block,
             'page' => $block->getPage(),
         ]);
-    }
-
-    /**
-     * Sets the admin form theme to form view. Used for compatibility between Symfony versions.
-     */
-    private function setFormTheme(FormView $formView, $theme): void
-    {
-        $twig = $this->get('twig');
-
-        $twig->getRuntime(FormRenderer::class)->setTheme($formView, $theme);
     }
 }

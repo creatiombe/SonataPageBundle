@@ -17,6 +17,7 @@ use Sonata\AdminBundle\Controller\CRUDController as Controller;
 use Sonata\PageBundle\Form\Type\CreateSnapshotType;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 /**
@@ -26,7 +27,7 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
  */
 class SnapshotAdminController extends Controller
 {
-    public function createAction(?Request $request = null)
+    public function createAction(?Request $request = null):Response
     {
         $this->admin->checkAccess('create');
 
